@@ -1,3 +1,10 @@
+# How that installed
+https://docs.medusajs.com/learn/installation/docker
+
+# How created user
+docker compose run --rm medusa npx medusa user -e host.pups@gmail.com -p supersecretPass
+
+
 <p align="center">
   <a href="https://www.medusajs.com">
   <picture>
@@ -52,11 +59,3 @@ Learn more about [Medusa’s architecture](https://docs.medusajs.com/learn/intro
 
 The community and core team are available in [GitHub Discussions](https://github.com/medusajs/medusa/discussions), where you can ask for support, discuss roadmap, and share ideas.
 
-Join our [Discord server](https://discord.com/invite/medusajs) to meet other community members.
-
-## Other channels
-
-- [GitHub Issues](https://github.com/medusajs/medusa/issues)
-- [Twitter](https://twitter.com/medusajs)
-- [LinkedIn](https://www.linkedin.com/company/medusajs)
-- [Medusa Blog](https://medusajs.com/blog/)
