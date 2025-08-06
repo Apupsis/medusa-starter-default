@@ -1,0 +1,3 @@
+# How created user
+
+docker compose run --rm medusa npx medusa user -e host.pups@gmail.com -p supersecretPass
