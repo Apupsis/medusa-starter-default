@@ -2,56 +2,56 @@ services:
   # PostgreSQL Database
   postgres:
     image: postgres:15-alpine
-    container_name: medusa_postgres
+    container_name: medusa_postgres-trafficmix-shop
     restart: unless-stopped
     environment:
-      POSTGRES_DB: medusa-store
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: medusa-store-trafficmix-shop
+      POSTGRES_USER: postgres-trafficmix-shop
+      POSTGRES_PASSWORD: postgres-trafficmix-shop
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data_trafficmix_shop:/var/lib/postgresql/data
     networks:
-      - medusa_network
+      - medusa_network_trafficmix_shop
 
   # Redis
   redis:
     image: redis:7-alpine
-    container_name: medusa_redis
+    container_name: medusa_redis-trafficmix-shop
     restart: unless-stopped
     ports:
-      - "6379:6379"
+      - "6380:6379"
     networks:
-      - medusa_network
+      - medusa_network_trafficmix_shop
 
   # Medusa Server
   # This service runs the Medusa backend application
   # and the admin dashboard.
   medusa:
     build: .
-    container_name: medusa_backend
+    container_name: medusa_backend-trafficmix-shop
     restart: unless-stopped
     depends_on:
       - postgres
       - redis
     ports:
-      - "9000:9000"
+      - "9001:9000"
     environment:
       - NODE_ENV=development
-      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/medusa-store
+      - DATABASE_URL=postgres://postgres-trafficmix-shop:postgres-trafficmix-shop@postgres:5432/medusa-store-trafficmix-shop
       - REDIS_URL=redis://redis:6379
-    # env_file:
-    #   - .env
+    env_file:
+      - .env
     volumes:
       - .:/app
       - /app/node_modules
     networks:
-      - medusa_network
+      - medusa_network_trafficmix_shop
 
 volumes:
-  postgres_data:
+  postgres_data_trafficmix_shop:
 
 networks:
-  medusa_network:
+  medusa_network_trafficmix_shop:
     driver: bridge
